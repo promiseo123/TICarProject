@@ -1,0 +1,84 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.36.0.0
+Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Ngo Hieu , RIT, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.36.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.36.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      CMSIS_AGDI.dll V1.33.0.0
+Dialog DLL:      TCM.DLL V1.53.0.0
+ 
+<h2>Project:</h2>
+C:\Users\trung.000\Desktop\CMPE-460\TI_CAR\TICarProject\TI_CAR.uvprojx
+Project File Date:  04/10/2023
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'Target 1'
+compiling ADC14.c...
+compiling ControlPins.c...
+compiling Timer32.c...
+compiling TimerA.c...
+compiling TICar.c...
+TICar.c(69): warning:  #223-D: function "delay" declared implicitly
+  						delay(10000);	
+TICar.c(48): warning:  #177-D: variable "forward"  was declared but never referenced
+  	int forward = 0;
+TICar.c(49): warning:  #177-D: variable "phase"  was declared but never referenced
+  	int phase = 0;
+TICar.c: 3 warnings, 0 errors
+compiling uart.c...
+compiling switches.c...
+assembling startup_msp432p4111_uvision.s...
+compiling CortexM.c...
+compiling SysTickTimer.c...
+compiling system_msp432p4111.c...
+linking...
+Program Size: Code=2692 RO-data=356 RW-data=48 ZI-data=648  
+".\Objects\TI_CAR.axf" - 0 Error(s), 3 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
+                ARM.CMSIS.5.8.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.5.0
+
+Package Vendor: TexasInstruments
+                http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/msp432cmsis/latest/exports/TexasInstruments.MSP432P4xx_DFP.3.2.6.pack
+                TexasInstruments.MSP432P4xx_DFP.3.2.6
+                Device Family Pack for Texas Instruments SimpleLink(TM) MSP432 Series
+   * Component: Startup Version: 3.2.2
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Target_1
+  C:\Users\trung.000\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  C:\Users\trung.000\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.5.0
+
+   * Component: TexasInstruments::Device:Startup:3.2.2
+      Include file:  Device\Include\msp_compatibility.h
+      Source file:   Device\Source\startup_msp432p4111_uvision.s
+      Source file:   Examples\BlinkLED\blinkLED.c
+      Source file:   Device\Source\system_msp432p4111.c
+      Source file:   Examples\EmptyMain\main.c
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>

@@ -11,6 +11,7 @@
 #include "msp.h"
 #include "uart.h"
 #include "TimerA.h"
+#include "Common.h"
 
 
 /**
@@ -18,11 +19,27 @@
  * 
  * del - The delay in milliseconds
  */
-void delay(int n)
+//void delay(int n)
+//{
+//	int i, j;
+//	for (j = 0; j < n; j++)
+//	for (i = 750; i > 0; i--); /* delay 1 ms */
+//}
+
+void Motor_Init()
 {
-	int i, j;
-	for (j = 0; j < n; j++)
-	for (i = 750; i > 0; i--); /* delay 1 ms */
+	P3->SEL1 &= ~BIT6;
+	P3->SEL0 &= ~BIT6;
+	P3->OUT  &= ~BIT6;
+	P3->SEL0 &= ~BIT7;
+	P3->SEL1 &= ~BIT7;
+	P3->OUT  &= ~BIT7;	
+}
+
+void Motor_Enable()
+{
+		P3->OUT  |= BIT6;
+		P3->OUT  |= BIT7;	
 }
 
 int main(void) {
@@ -31,45 +48,34 @@ int main(void) {
 	int forward = 0;
 	int phase = 0;
 	uart0_init();
-	//TIMER_A0_PWM_Init(SystemCoreClock/10000, 0,1);
-	//TIMER_A0_PWM_Init(SystemCoreClock/10000, 0,2);
-	TIMER_A2_PWM_Init(SystemCoreClock/50, 0.05,1);
+	Motor_Init();
+	Motor_Enable();
 
 
-
+	TIMER_A0_PWM_Init(SystemCoreClock/10000, 0,1);
+	TIMER_A0_PWM_Init(SystemCoreClock/10000, 0,2);
+	TIMER_A0_PWM_Init(SystemCoreClock/10000, 0,3);
+	TIMER_A0_PWM_Init(SystemCoreClock/10000, 0,4);
+	TIMER_A2_PWM_Init(SystemCoreClock/50, 0.0,1);
 	// Print welcome over serial
-	uart0_put("Running... \n\r");
+	uart0_put("Running... \n\r");	
 	
-	// Part 1 - UNCOMMENT THIS
-	// Generate 20% duty cycle at 10kHz
-	// INSERT CODE HERE
-//	TIMER_A0_PWM_DutyCycle(0,1);
-	//TIMER_A0_PWM_DutyCycle(0,4);
-	//delay(10);	
-	
-	// Part 2 - UNCOMMENT THIS
-	for(;;)  //loop forever
-	{
-		uint16_t dc = 0;
-		uint16_t freq = 10000; // Frequency = 10 kHz 
-		uint16_t dir = 0;
-		char c = 48;
-		int i=0;
 		
-		// 0 to 100% duty cycle in forward direction
-		for (i=0; i<50; i=i+10) {
-		    // INSERT CODE HERE
-			TIMER_A2_PWM_DutyCycle(i*0.01,1);
-			delay(100);
-		}
+	TIMER_A0_PWM_DutyCycle(0.3,1);
+	TIMER_A0_PWM_DutyCycle(0.3,4);
 
-		// 100% down to 0% duty cycle in the forward direction
-		for (i=50; i>=0; i=i-5) {
-		    // INSERT CODE HERE
-			TIMER_A2_PWM_DutyCycle(i*0.01,1);
-			delay(100);
-		}
-	}
+	
+		TIMER_A2_PWM_DutyCycle(0.05,1);
+						delay(10000);	
+		TIMER_A2_PWM_DutyCycle(0.45,1);
+						delay(10000);	
+		TIMER_A2_PWM_DutyCycle(0.05,1);
+						delay(10000);
+		TIMER_A2_PWM_DutyCycle(0.45,1);
+						delay(10000);	
+		
+		
+	
 //NOTE: Step 17 - This is full step low torque
 	
 	// C o n fig u re the S ig na l M u ltip le x e r for G P IO P ins

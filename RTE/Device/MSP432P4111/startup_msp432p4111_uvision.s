@@ -93,7 +93,7 @@ __Vectors       DCD     __initial_sp              ; Top of Stack
                 DCD     PCM_IRQHandler            ;  2:  PCM Interrupt
                 DCD     WDT_A_IRQHandler          ;  3:  WDT_A Interrupt
                 DCD     FPU_IRQHandler            ;  4:  FPU Interrupt
-                DCD     FLCTL_IRQHandler          ;  5:  Flash Controller Interrupt
+                DCD     FLCTL_A_IRQHandler        ;  5:  Flash Controller Interrupt
                 DCD     COMP_E0_IRQHandler        ;  6:  COMP_E0 Interrupt
                 DCD     COMP_E1_IRQHandler        ;  7:  COMP_E1 Interrupt
                 DCD     TA0_0_IRQHandler          ;  8:  TA0_0 Interrupt
@@ -129,7 +129,7 @@ __Vectors       DCD     __initial_sp              ; Top of Stack
                 DCD     PORT4_IRQHandler          ; 38:  Port4 Interrupt
                 DCD     PORT5_IRQHandler          ; 39:  Port5 Interrupt
                 DCD     PORT6_IRQHandler          ; 40:  Port6 Interrupt
-                DCD     0                         ; 41:  Reserved     
+                DCD     LCD_F_IRQHandler          ; 41:  LCD_F Interrupt
                 DCD     0                         ; 42:  Reserved     
                 DCD     0                         ; 43:  Reserved     
                 DCD     0                         ; 44:  Reserved     
@@ -224,7 +224,7 @@ Default_Handler PROC
                 EXPORT  PCM_IRQHandler            [WEAK]
                 EXPORT  WDT_A_IRQHandler          [WEAK]
                 EXPORT  FPU_IRQHandler            [WEAK]
-                EXPORT  FLCTL_IRQHandler          [WEAK]
+                EXPORT  FLCTL_A_IRQHandler        [WEAK]
                 EXPORT  COMP_E0_IRQHandler        [WEAK]
                 EXPORT  COMP_E1_IRQHandler        [WEAK]
                 EXPORT  TA0_0_IRQHandler          [WEAK]
@@ -260,13 +260,14 @@ Default_Handler PROC
                 EXPORT  PORT4_IRQHandler          [WEAK]
                 EXPORT  PORT5_IRQHandler          [WEAK]
                 EXPORT  PORT6_IRQHandler          [WEAK]
+                EXPORT  LCD_F_IRQHandler          [WEAK]
 
 PSS_IRQHandler
 CS_IRQHandler
 PCM_IRQHandler
 WDT_A_IRQHandler
 FPU_IRQHandler
-FLCTL_IRQHandler
+FLCTL_A_IRQHandler
 COMP_E0_IRQHandler
 COMP_E1_IRQHandler
 TA0_0_IRQHandler
@@ -302,6 +303,7 @@ PORT3_IRQHandler
 PORT4_IRQHandler
 PORT5_IRQHandler
 PORT6_IRQHandler
+LCD_F_IRQHandler
                 B       .
                 ENDP
 

@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'TICar' 
+ * Project: 'TI_CAR' 
  * Target:  'Target 1' 
  */
 
