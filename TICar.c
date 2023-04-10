@@ -19,12 +19,12 @@
  * 
  * del - The delay in milliseconds
  */
-//void delay(int n)
-//{
-//	int i, j;
-//	for (j = 0; j < n; j++)
-//	for (i = 750; i > 0; i--); /* delay 1 ms */
-//}
+void delayMs(int n)
+{
+	int i, j;
+	for (j = 0; j < n; j++)
+	for (i = 750; i > 0; i--); /* delay 1 ms */
+}
 
 void Motor_Init()
 {
@@ -52,11 +52,11 @@ int main(void) {
 	Motor_Enable();
 
 
-	TIMER_A0_PWM_Init(SystemCoreClock/10000, 0,1);
-	TIMER_A0_PWM_Init(SystemCoreClock/10000, 0,2);
-	TIMER_A0_PWM_Init(SystemCoreClock/10000, 0,3);
-	TIMER_A0_PWM_Init(SystemCoreClock/10000, 0,4);
-	TIMER_A2_PWM_Init(SystemCoreClock/50, 0.0,1);
+	TIMER_A0_PWM_Init(SystemCoreClock/4800, 0,1);
+	TIMER_A0_PWM_Init(SystemCoreClock/4800, 0,2);
+	TIMER_A0_PWM_Init(SystemCoreClock/4800, 0,3);
+	TIMER_A0_PWM_Init(SystemCoreClock/4800, 0,4);
+	TIMER_A2_PWM_Init(SystemCoreClock/960, 0.0,1);
 	// Print welcome over serial
 	uart0_put("Running... \n\r");	
 	
@@ -65,14 +65,14 @@ int main(void) {
 	TIMER_A0_PWM_DutyCycle(0.3,4);
 
 	
-		TIMER_A2_PWM_DutyCycle(0.05,1);
-						delay(10000);	
-		TIMER_A2_PWM_DutyCycle(0.45,1);
-						delay(10000);	
-		TIMER_A2_PWM_DutyCycle(0.05,1);
-						delay(10000);
-		TIMER_A2_PWM_DutyCycle(0.45,1);
-						delay(10000);	
+		TIMER_A2_PWM_DutyCycle(0.1,1);
+						delayMs(10000);	
+		TIMER_A2_PWM_DutyCycle(0.5,1);
+						delayMs(10000);	
+		TIMER_A2_PWM_DutyCycle(0.1,1);
+						delayMs(10000);
+		TIMER_A2_PWM_DutyCycle(0.5,1);
+						delayMs(10000);	
 		
 		
 	
