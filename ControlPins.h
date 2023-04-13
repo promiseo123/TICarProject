@@ -1,8 +1,8 @@
 #ifndef _CONTROL_PINS_
 #define _CONTROL_PINS_
 #include "Common.h"
-// SI Pin will be P5.5 A0
 
+// SI Pin will be P5.5 A0
 // CLK Pin will be P5.4 A1
 
 #define SI BIT5

@@ -26,11 +26,7 @@
 #define ENABLE_SYSTICK_CLOCK   0x00000007
 
 void SysTickTimer_Init(void(*task)(void), unsigned long period);
-
-
 void DisableSysTickTimer(void);
 void EnableSysTickTimer(void);
-
-
 
 #endif

@@ -48,7 +48,7 @@ enum timer32divider{
 unsigned long  CalcPeriodFromFrequency (double Hz);
 
 
-	
+
 // ***************** Timer32_1_Init ****************
 // Activate Timer32 Timer 1 interrupts to run user task periodically
 // Inputs:  task is a pointer to a user function
@@ -59,6 +59,9 @@ unsigned long  CalcPeriodFromFrequency (double Hz);
 //            T32DIV256 for input clock divider /256
 // Outputs: none
 void Timer32_1_Init(void(*task)(void), unsigned long period, enum timer32divider div);
+
+void Timer32_1_Start(void);
+void Timer32_1_Stop(void);
 
 // ***************** Timer32_2_Init ****************
 // Activate Timer32 Timer 2 interrupts to run user task periodically
@@ -71,5 +74,7 @@ void Timer32_1_Init(void(*task)(void), unsigned long period, enum timer32divider
 // Outputs: none
 void Timer32_2_Init(void(*task)(void), unsigned long period, enum timer32divider div);
 
-#endif
+void Timer32_2_Start(void);
+void Timer32_2_Stop(void);
 
+#endif
