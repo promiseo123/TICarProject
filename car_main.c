@@ -175,10 +175,10 @@ void initDriving(void){
     P3->OUT |= BIT7;
 
     period = (uint16_t) CalcPeriodFromFrequency(freq);  // calculate period
-    TIMER_A0_PWM_Init(period, 0.0, 1);	// M1A -> P2.4 -> TA0.1
-    TIMER_A0_PWM_Init(period, 0.1, 2);	// M1B -> P2.5 -> TA0.2
-    TIMER_A0_PWM_Init(period, 0.1, 3);	// M2A -> P2.6 -> TA0.3
-    TIMER_A0_PWM_Init(period, 0.0, 4);	// M2B -> P2.7 -> TA0.4
+    TIMER_A0_PWM_Init(period, 0, 1);	// M1A -> P2.4 -> TA0.1
+    TIMER_A0_PWM_Init(period, 0, 2);	// M1B -> P2.5 -> TA0.2
+    TIMER_A0_PWM_Init(period, 0, 3);	// M2A -> P2.6 -> TA0.3
+    TIMER_A0_PWM_Init(period, 0, 4);	// M2B -> P2.7 -> TA0.4
 }
 
 /**
@@ -393,41 +393,35 @@ int main(void){
 
     /* Begin Infinite Loop */
     EnableInterrupts();
-    running = FALSE;
+    running = TRUE;
 
 
-    /**
-     * On switch 1 press: cycle through race modes (Red, Green, Blue)
-     *
-     * When switch 2 is pressed,
-     * turn running on and select that mode
-     * turn LED off
-     */
+    
     raceMode = Run;  //  Jog will show up as first race mode
     LED2_Off();
 
     ChooseRaceSettings(&speedSettings);
-    
     for (;;){
         
-        /* Read camera data */
         line_statistics = parseCameraData(line, smoothed_line);
 
-        /* Adjust steering direction */
         adjustSteering(line_statistics, steering_pid);
         
-        /* Adjust DC Motor speed */
-        motor_speed = adjustDrivingContinuous(line_statistics, driving_pid, motor_speed, speedSettings);
-
-        /* Check for track loss or intersection */
+      //  motor_speed = adjustDrivingContinuous(line_statistics, driving_pid, motor_speed, speedSettings);
+			if(running){
+			TIMER_A0_PWM_DutyCycle(0.25,2);
+			TIMER_A0_PWM_DutyCycle(0.25,3);
+			}
         if (isOffTrack(line_statistics.y))
             track_loss_counter += 1;    //  if off track, increment counter
         else
             track_loss_counter = 0;     //  if on track, reset counter to zero
 
-        /* Carpet detection reached limit */
         if (track_loss_counter > TRACK_LOSS_LIMIT){
             running = FALSE;
+					TIMER_A0_PWM_DutyCycle(0,2);
+					TIMER_A0_PWM_DutyCycle(0,3);
+					
         }
         else if (Switch2_Pressed()){    // Re-enable car into the previously selected mode
             track_loss_counter = 0;
@@ -444,7 +438,7 @@ int main(void){
             //uart2_put(uart_tx_buffer);
         #endif
 
-		/* Do a small delay */
 		msdelay(10);
     }
+		
 }
