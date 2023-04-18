@@ -44,12 +44,12 @@
 /* DC Motor Settings */
 // 3 and 4 motor goes' fwd
 // FORWARD: LEFT <= 3, RIGHT <= 4
-#define LEFT_MOTOR 3
-#define RIGHT_MOTOR 4
+#define LEFT_MOTOR 2
+#define RIGHT_MOTOR 3
 
 /* Track Loss Limit */
-#define TRACK_LOSS_LIMIT 12  // Stop limit if off track
-#define CARPET_THRESHOLD 5500   // any y value lower than this means the car is off track
+#define TRACK_LOSS_LIMIT 6  // Stop limit if off track
+#define CARPET_THRESHOLD 7000   // any y value lower than this means the car is off track
 
 #ifdef USE_OLED
     extern unsigned char OLED_clr_data[1024];
@@ -407,7 +407,7 @@ int main(void){
 
         adjustSteering(line_statistics, steering_pid);
         
-      //  motor_speed = adjustDrivingContinuous(line_statistics, driving_pid, motor_speed, speedSettings);
+      // motor_speed = adjustDrivingContinuous(line_statistics, driving_pid, motor_speed, speedSettings);
 			if(running){
 			TIMER_A0_PWM_DutyCycle(0.25,2);
 			TIMER_A0_PWM_DutyCycle(0.25,3);
@@ -425,9 +425,9 @@ int main(void){
         }
         else if (Switch2_Pressed()){    // Re-enable car into the previously selected mode
             track_loss_counter = 0;
-            LED2_Yellow();
-            while(Switch2_Pressed()){}
-            LED2_Off();
+            //LED2_Yellow();
+            //while(Switch2_Pressed()){}
+            //LED2_Off();
             running = TRUE;
         }
 
